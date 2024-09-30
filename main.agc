@@ -1,6 +1,6 @@
 
 
-//SetPhysicsDebugon() //mostra as hitbox
+SetPhysicsDebugon() //mostra as hitbox
 
 #include "funcoesnotas.agc" //inclui os outros arquivos nesse codigo
 #insert "tela.agc" 
@@ -29,7 +29,7 @@ loadimage (9,"botaoazul.png")
 
 
 //musicas
-LoadMusic (10,"we die young.mp3")
+LoadMusic (10,"courtesycringe.mp3")
 
 TYPE Notas      //struct que engloba todas as notas, criando uma lei para todo tipo
 	X 
@@ -90,7 +90,6 @@ do
 		gosub criaNotas
 		gosub moveNotas
 		gosub escrevescore
-		
 	endif	
 Print( ScreenFPS() )
 Sync()
