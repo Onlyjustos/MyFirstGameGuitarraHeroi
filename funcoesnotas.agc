@@ -1,5 +1,4 @@
 
-
 criaNotas:         //favor nao alterar
 					//nao sei como isso funciona
 		print(segundoatualI)
@@ -9,7 +8,7 @@ criaNotas:         //favor nao alterar
 			valordosegundoatual = GetMilliseconds() + 90
 		endif 
 		
-		if(GetSeconds()=2+tempodomenu)
+		if(Getseconds()=2+tempodomenu)
 			PlayMusic(10)
 		endif
 		SetSpriteVisible (botaoVermelho,1)		
@@ -36,19 +35,23 @@ criaNotas:         //favor nao alterar
 				criaazul()
 			endif
 			if(segundoatual[0]=2)
-				criaverde()
+				criarastroverde()
 			endif
 			
 			if(segundoatual[1]=2)
-				criavermelho()
+				criarastrovermelho()
 			endif
 			
 			if(segundoatual[2]=2)
-				criaamarelo()
+				criarastroamarelo()
+				
+				
 			endif
 			if(segundoatual[3]=2)
-				criaazul()
+				criarastroAzul()
+				
 			endif
+			
 			
 			atualizouosegundo = 1
 			
@@ -56,12 +59,13 @@ criaNotas:         //favor nao alterar
 		
 return
 
+
+
 function criaverde()
 	nota as notas
-	nota.x=330
-	nota.y=-20
+	nota.x = 310
 	nota.speed = 10
-
+	nota.y = -20
 	nota.spriteid = CreateSprite(1)
 	SetSpriteSize (nota.spriteid,80,80)
 	SetSpriteShapeCircle(nota.spriteid,1,1,40)
@@ -70,12 +74,25 @@ function criaverde()
 	notasAtivas.Insert(nota)
 endfunction
 
+function criarastroverde()
+	verde as rastro
+	verde.x=330
+	verde.y=-80
+	verde.speed = 10
+	verde.tamanho = 150
+	verde.spriteid = CreateSprite(11)
+	SetSpriteSize (verde.spriteid,40,verde.tamanho)
+	
+	SetSpritePosition(verde.spriteid, verde.x, verde.y)
+	rastroAtivos.Insert(verde)
+	
+endfunction
+
 function criavermelho()
 	nota as notas
-	nota.x=470
+	nota.x=460
 	nota.y=-20
 	nota.speed = 10
-
 	nota.spriteid = CreateSprite(2)
 	SetSpriteSize (nota.spriteid,80,80)
 	SetSpriteShapeCircle(nota.spriteid,1,1,40)
@@ -84,6 +101,19 @@ function criavermelho()
 	notasAtivas.Insert(nota)
 endfunction
 
+function criarastrovermelho()
+	vermelho as rastro
+	vermelho.x=480
+	vermelho.y=-80
+	vermelho.speed = 10
+	vermelho.tamanho = 150
+	vermelho.spriteid = CreateSprite(12)
+	SetSpriteSize (vermelho.spriteid,40,vermelho.tamanho)
+	
+	SetSpritePosition(vermelho.spriteid, vermelho.x, vermelho.y)
+	rastroAtivos.Insert(vermelho)
+	
+endfunction
 
 function criaamarelo()
 	nota as notas
@@ -97,6 +127,20 @@ function criaamarelo()
 	SetSpritePosition(nota.spriteid, nota.x, nota.y)
 	
 	notasAtivas.Insert(nota)
+endfunction
+
+function criarastroamarelo()
+	amarelo as rastro
+	amarelo.x=620
+	amarelo.y=-80
+	amarelo.speed = 10
+	amarelo.tamanho = 150
+	amarelo.spriteid = CreateSprite(14)
+	SetSpriteSize (amarelo.spriteid,40,amarelo.tamanho)
+	
+	SetSpritePosition(amarelo.spriteid, amarelo.x, amarelo.y)
+	rastroAtivos.Insert(amarelo)
+	
 endfunction
 
 function criaazul()
@@ -113,32 +157,47 @@ function criaazul()
 	notasAtivas.Insert(nota)
 endfunction
 
+function criarastroAzul()
+	azul as rastro
+	azul.x=765
+	azul.y=-100
+	azul.speed = 10
+	azul.tamanho = 150
+	azul.spriteid = CreateSprite(13)
+	SetSpriteSize (azul.spriteid,40,azul.tamanho)
+	
+	SetSpritePosition(azul.spriteid, azul.x, azul.y)
+	rastroAtivos.Insert(azul)
+	
+endfunction
+
 acertouNota:     //analisa se o clique acertou ou nao uma nota vermelha
 	
+	if(GetSpriteExists(notasAtivas[i].spriteID))
+		if (GetRawKeypressed(65)) //analisa se o clique acertou ou nao uma nota verde
+																																
+			if (GetSpriteCollision ( botaoVerde , notasAtivas[i].spriteID ))
+				gosub marcascore	
+				
+				DeleteSprite(notasAtivas[i].spriteID)  
+					
+			
+			endif
+		endif
+	endif
+	
 	if(GetSpriteExists(notasAtivas[i].spriteID))	
-		if (GetRawKeypressed(83)and (GetRawKeyPressed(65) or GetRawKeyPressed(74) or GetRawKeyPressed(75) or GetRawKeyPressed(76))=0)
+		if (GetRawKeypressed(83))
 			if (GetSpriteCollision ( botaoVermelho , notasAtivas[i].spriteid ))
 				gosub marcascore	
 				DeleteSprite(notasAtivas[i].spriteID)			//deleta a sprite que foi tocada
 			endif
 		endif
-	endif	
-	
-	if(GetSpriteExists(notasAtivas[i].spriteID))
-		if (GetRawKeypressed(65)and (GetRawKeyPressed(75) or GetRawKeyPressed(74) or GetRawKeyPressed(83) or GetRawKeyPressed(76))=0) //analisa se o clique acertou ou nao uma nota verde
-			press=0																														
-			if (GetSpriteCollision ( botaoVerde , notasAtivas[i].spriteID )and press=0)
-				gosub marcascore	
-				
-				DeleteSprite(notasAtivas[i].spriteID)  
-				press=1		
-			
-			endif
-		endif
 	endif
-		
+	
+	
 	if(GetSpriteExists(notasAtivas[i].spriteID))	
-		if (GetRawKeypressed(74)and (GetRawKeyPressed(65) or GetRawKeyPressed(75) or GetRawKeyPressed(83) or GetRawKeyPressed(76))=0)	//analisa se o clique acertou ou nao uma nota amarela
+		if (GetRawKeypressed(74))	//analisa se o clique acertou ou nao uma nota amarela
 			if (GetSpriteCollision ( botaoAmarelo , notasAtivas[i].spriteid ))
 				gosub marcascore		
 				DeleteSprite(notasAtivas[i].spriteID)   	
@@ -147,19 +206,15 @@ acertouNota:     //analisa se o clique acertou ou nao uma nota vermelha
 		endif
 	endif
 		
-	if(GetSpriteExists(notasAtivas[i].spriteID))	
-		if (GetRawKeyPressed(75) and (GetRawKeyPressed(65)=0 and GetRawKeyPressed(74)=0 and GetRawKeyPressed(83)=0 and GetRawKeyPressed(76)=0)=1)	 //analisa se o clique acertou ou nao uma nota azul
-			press=0	
-			botaoAzul = CreateSprite( 9 )
-			setspritesize(botaoAzul,100,100)
-			SetSpritePosition (botaoAzul,725,670)
-			if (GetSpriteCollision ( botaoazul, notasAtivas[i].spriteid )and press=0)
-				gosub marcascore	
-				press=1	
-				DeleteSprite(notasAtivas[i].spriteID) //deleta a sprite que foi tocada
-				Deletesprite(botaoazul)
-			endif
-		endif		
+	if(GetSpriteExists(notasAtivas[i].spriteID))		
+		if (GetRawKeyPressed(75))	 //analisa se o clique acertou ou nao uma nota azul
+				if (GetSpriteCollision ( botaoazul, notasAtivas[i].spriteid ))
+					gosub marcascore	
+					
+					DeleteSprite(notasAtivas[i].spriteID) //deleta a sprite que foi tocada
+					
+				endif
+		endif
 	endif
 return
 
@@ -172,19 +227,69 @@ moveNotas:
 			notasAtivas[i].Y = notasAtivas[i].Y + notasAtivas[i].speed 
 			gosub perdeuNota
 			gosub acertouNota
-					
+			
+			
 		endif
+		
+		
+		
+	next i
+	for i = 0 to rastroAtivos.length
+	if(GetSpriteExists(rastroAtivos[i].spriteID))
+		SetSpritePosition(rastroAtivos[i].spriteid, rastroAtivos[i].X,rastroAtivos[i].Y)
+		rastroAtivos[i].Y = rastroAtivos[i].Y + rastroAtivos[i].speed 
+		
+		gosub moverastro
+			
+	endif
+		
 	next i
 return
-
-
-perdeuNota: //pune a perda de nota e reseta a posição da sprite verde
+moverastro:
 	
-	if(GetSpriteExists(notasAtivas[i].spriteID) and notasAtivas[i].Y > 768)
+	if(rastroAtivos[i].y>560 and rastroAtivos[i].X=330 and rastroAtivos[i].tamanho>0)
+			if ( GetRawKeyState(65))
+					
+				rastroAtivos[i].tamanho = rastroAtivos[i].tamanho-10
+				SetSpriteSize(rastroAtivos[i].spriteid,40,rastroAtivos[i].tamanho)	
+			endif		
+	endif
+	
+	if(rastroAtivos[i].y>560 and rastroAtivos[i].X=480 and rastroAtivos[i].tamanho>0)
+			if ( GetRawKeyState(83))
+					
+				rastroAtivos[i].tamanho = rastroAtivos[i].tamanho-10
+				SetSpriteSize(rastroAtivos[i].spriteid,40,rastroAtivos[i].tamanho)	
+			endif		
+	endif
+	if(rastroAtivos[i].y>560 and rastroAtivos[i].X=620 and rastroAtivos[i].tamanho>0)
+			if ( GetRawKeyState(74))
+				
+				rastroAtivos[i].tamanho = rastroAtivos[i].tamanho-10
+				SetSpriteSize(rastroAtivos[i].spriteid,40,rastroAtivos[i].tamanho)	
+			endif		
+	endif
+	if(rastroAtivos[i].y>560 and rastroAtivos[i].X=765 and rastroAtivos[i].tamanho>0)
+			if ( GetRawKeyState(75))
+				rastroAtivos[i].tamanho = rastroAtivos[i].tamanho-10
+				SetSpriteSize(rastroAtivos[i].spriteid,40,rastroAtivos[i].tamanho)	
+			endif		
+	endif
+	if(rastroAtivos[i].y>560 and rastroAtivos[i].X=1000 and rastroAtivos[i].tamanho>0)
+			if ( GetRawKeyState(76))
+					
+				rastroAtivos[i].tamanho = rastroAtivos[i].tamanho-10
+				SetSpriteSize(rastroAtivos[i].spriteid,40,rastroAtivos[i].tamanho)	
+			endif		
+	endif
+	
+perdeuNota: //pune a perda de nota e deleta ela
+	
+	if (GetSpriteExists(notasAtivas[i].spriteid ) and notasAtivas[i].Y > 768)
 
-			bonusreal=1
-			bonus=1
-			DeleteSprite(notasAtivas[i].spriteID)
+		bonusreal=1
+		bonus=1
+		DeleteSprite(notasAtivas[i].spriteID)
 			
 		
 	endif	

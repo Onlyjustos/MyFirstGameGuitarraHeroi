@@ -1,5 +1,6 @@
 
 
+
 SetPhysicsDebugon() //mostra as hitbox
 
 #include "funcoesnotas.agc" //inclui os outros arquivos nesse codigo
@@ -25,7 +26,11 @@ loadimage (6,"botaoverde.png")
 loadimage (7,"botaovermelho.png")
 loadimage (8,"botaoamarelo.png")
 loadimage (9,"botaoazul.png")
-
+LoadImage (11,"rastroverde2.png")
+LoadImage (12,"rastroVermelho.png")
+LoadImage (13,"rastroAzul.png")
+LoadImage (14,"rastroAmar.png")
+LoadImage (15,"rastroLar.png")
 
 
 //musicas
@@ -39,7 +44,15 @@ TYPE Notas      //struct que engloba todas as notas, criando uma lei para todo t
 	speed 
 	color
 ENDTYPE
-
+TYPE rastro     //struct que engloba todos os rastros, criando uma lei para todo tipo
+	X 
+	Y 	
+	spriteid
+	tamanho	
+	speed 
+	color
+ENDTYPE
+dim rastroAtivos[] as rastro
 dim notasAtivas[] as notas 
 //-----------------------sprites-----------------------------
 	
@@ -61,6 +74,7 @@ setspritesize(botaoVermelho,100,100)
 setspritesize(botaoVerde,100,100)
 setspritesize(botaoAmarelo,100,100)
 setspritesize(botaoAzul,100,100)
+
 //setspritesize(botaoLaranja,100,100)
 	
 

@@ -23,14 +23,8 @@ UseNewDefaultFonts( 1 )
 	
 		dim segundos[740,5]
 		
-		for i = 0 to segundos.length
-			segundos[i] = [0,0,0,0,0]
-		next
-		
-				     
-				    //Vd V AM AZ la
-				    
-		segundos[3] =  [0, 0, 0, 0,0]
+						     
+		segundos[3] =  [0, 0, 0, 0,0]	
 		segundos[4] =  [0, 0, 0, 0,0]
 		segundos[5] =  [0, 0, 0, 0,0]
 		segundos[6] =  [0, 0, 0, 0, 0]
@@ -40,7 +34,7 @@ UseNewDefaultFonts( 1 )
 		segundos[10] = [0, 0, 0, 0, 0]
 		segundos[11] = [0, 0, 0, 0, 0]
 		segundos[12] = [0, 0, 0, 0, 0]
-		segundos[13] = [0, 0, 0, 0, 0]
+		segundos[13] = [0, 0, 0, 0, 2]
 		segundos[14] = [0, 0, 0, 1, 0]
 		segundos[15] = [0, 0, 0, 0, 0]
 		segundos[16] = [0, 0, 1, 0, 0]
@@ -232,8 +226,8 @@ UseNewDefaultFonts( 1 )
 		segundos[202] = [0, 0, 1, 0, 0]
 		segundos[203] = [0, 0, 1, 0, 0]
 		segundos[204] = [0, 0, 0, 0, 0]
-		segundos[205] = [0, 2, 2, 0, 0]
-		segundos[206] = [0, 0, 0, 0, 0]
+		segundos[205] = [1, 1, 1, 1, 0]
+		segundos[206] = [2, 2, 2, 2, 0]
 		segundos[207] = [0, 0, 0, 0, 0]
 		segundos[208] = [0, 0, 0, 0, 0]
 		segundos[209] = [0, 0, 0, 0, 0]
@@ -527,8 +521,7 @@ UseNewDefaultFonts( 1 )
 				
 		
 		
-		
-		
+	
 		
 		
 		
