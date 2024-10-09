@@ -51,6 +51,10 @@ criaNotas:         //favor nao alterar
 				criarastroAzul()
 				
 			endif
+			if(segundoatual[4]=2)
+				criarastrolaranja()
+				
+			endif
 			
 			
 			atualizouosegundo = 1
@@ -171,6 +175,20 @@ function criarastroAzul()
 	
 endfunction
 
+function criarastrolaranja()
+	laranja as rastro
+	laranja.x=885
+	laranja.y=-100
+	laranja.speed = 10
+	laranja.tamanho = 150
+	laranja.spriteid = CreateSprite(14)
+	SetSpriteSize (laranja.spriteid,40,laranja.tamanho)
+	
+	SetSpritePosition(laranja.spriteid, laranja.x, laranja.y)
+	rastroAtivos.Insert(laranja)
+	
+endfunction
+
 acertouNota:     //analisa se o clique acertou ou nao uma nota vermelha
 	
 	if(GetSpriteExists(notasAtivas[i].spriteID))
@@ -275,7 +293,7 @@ moverastro:
 				SetSpriteSize(rastroAtivos[i].spriteid,40,rastroAtivos[i].tamanho)	
 			endif		
 	endif
-	if(rastroAtivos[i].y>560 and rastroAtivos[i].X=1000 and rastroAtivos[i].tamanho>0)
+	if(rastroAtivos[i].y>560 and rastroAtivos[i].X=885 and rastroAtivos[i].tamanho>0)
 			if ( GetRawKeyState(76))
 					
 				rastroAtivos[i].tamanho = rastroAtivos[i].tamanho-10

@@ -1,7 +1,7 @@
 
 
 
-SetPhysicsDebugon() //mostra as hitbox
+//SetPhysicsDebugon() //mostra as hitbox
 
 #include "funcoesnotas.agc" //inclui os outros arquivos nesse codigo
 #insert "tela.agc" 
@@ -26,7 +26,7 @@ loadimage (6,"botaoverde.png")
 loadimage (7,"botaovermelho.png")
 loadimage (8,"botaoamarelo.png")
 loadimage (9,"botaoazul.png")
-LoadImage (11,"rastroverde2.png")
+LoadImage (11,"rastroverde.png")
 LoadImage (12,"rastroVermelho.png")
 LoadImage (13,"rastroAzul.png")
 LoadImage (14,"rastroAmar.png")
